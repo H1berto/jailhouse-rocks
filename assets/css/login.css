@@ -549,3 +549,7 @@ body.subpage {
  width:40px ;
 
 }
+
+#inputImage{
+  border-radius: 50%;
+}
