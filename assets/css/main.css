@@ -1456,7 +1456,7 @@ input, select, textarea {
 }
 
 a {
-	color: #8a4680;
+	color: black;
 }
 
 strong, b {
@@ -1639,16 +1639,16 @@ input[type="submit"].alt.icon:before, input[type="reset"].alt.icon:before, input
 }
 
 input[type="submit"].special, input[type="reset"].special, input[type="button"].special, button.special, .button.special {
-	background-color: #8a4680;
+	background-color: black;
 	color: #ffffff !important;
 }
 
 input[type="submit"].special:hover, input[type="reset"].special:hover, input[type="button"].special:hover, button.special:hover, .button.special:hover {
-	background-color: #9b4f90;
+	background-color: black;
 }
 
 input[type="submit"].special:active, input[type="reset"].special:active, input[type="button"].special:active, button.special:active, .button.special:active {
-	background-color: #793d70;
+	background-color: black;
 }
 
 /* Form */
@@ -1813,8 +1813,8 @@ input[type="text"], input[type="password"], input[type="email"], select, textare
 }
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
-	border-color: #8a4680;
-	box-shadow: 0 0 0 1px #8a4680;
+	border-color: black;
+	box-shadow: 0 0 0 1px black;
 }
 
 .select-wrapper:before {
@@ -1831,14 +1831,14 @@ input[type="checkbox"]+label:before, input[type="radio"]+label:before {
 }
 
 input[type="checkbox"]:checked+label:before, input[type="radio"]:checked+label:before {
-	background-color: #8a4680;
-	border-color: #8a4680;
+	background-color: black;
+	border-color: black;
 	color: #ffffff;
 }
 
 input[type="checkbox"]:focus+label:before, input[type="radio"]:focus+label:before {
-	border-color: #8a4680;
-	box-shadow: 0 0 0 1px #8a4680;
+	border-color: black;
+	box-shadow: 0 0 0 1px black;
 }
 
 ::-webkit-input-placeholder {
@@ -2236,7 +2236,7 @@ table.alt tbody tr td {
 }
 
 .wrapper.style1 {
-	background-color: #8a4680;
+	background-color: black;
 	color: #e2d1df;
 }
 
@@ -2306,7 +2306,7 @@ table.alt tbody tr td {
 
 .wrapper.style1 input[type="submit"].special, .wrapper.style1 input[type="reset"].special, .wrapper.style1 input[type="button"].special, .wrapper.style1 button.special, .wrapper.style1 .button.special {
 	background-color: #ffffff;
-	color: #8a4680 !important;
+	color: black !important;
 }
 
 .wrapper.style1 label {
@@ -2339,7 +2339,7 @@ table.alt tbody tr td {
 .wrapper.style1 input[type="checkbox"]:checked+label:before, .wrapper.style1 input[type="radio"]:checked+label:before {
 	background-color: #ffffff;
 	border-color: #ffffff;
-	color: #8a4680;
+	color: black;
 }
 
 .wrapper.style1 input[type="checkbox"]:focus+label:before, .wrapper.style1 input[type="radio"]:focus+label:before {
@@ -2409,7 +2409,7 @@ table.alt tbody tr td {
 }
 
 .wrapper.style2 a {
-	color: #8a4680;
+	color: ;
 }
 
 .wrapper.style2 strong, .wrapper.style2 b {
@@ -2461,16 +2461,16 @@ table.alt tbody tr td {
 }
 
 .wrapper.style2 input[type="submit"].special, .wrapper.style2 input[type="reset"].special, .wrapper.style2 input[type="button"].special, .wrapper.style2 button.special, .wrapper.style2 .button.special {
-	background-color: #8a4680;
+	background-color:black;
 	color: #ffffff !important;
 }
 
 .wrapper.style2 input[type="submit"].special:hover, .wrapper.style2 input[type="reset"].special:hover, .wrapper.style2 input[type="button"].special:hover, .wrapper.style2 button.special:hover, .wrapper.style2 .button.special:hover {
-	background-color: #9b4f90;
+	background-color: black;
 }
 
 .wrapper.style2 input[type="submit"].special:active, .wrapper.style2 input[type="reset"].special:active, .wrapper.style2 input[type="button"].special:active, .wrapper.style2 button.special:active, .wrapper.style2 .button.special:active {
-	background-color: #793d70;
+	background-color: black;
 }
 
 .wrapper.style2 label {
@@ -2483,8 +2483,8 @@ table.alt tbody tr td {
 }
 
 .wrapper.style2 input[type="text"]:focus, .wrapper.style2 input[type="password"]:focus, .wrapper.style2 input[type="email"]:focus, .wrapper.style2 select:focus, .wrapper.style2 textarea:focus {
-	border-color: #8a4680;
-	box-shadow: 0 0 0 1px #8a4680;
+	border-color: black;
+	box-shadow: 0 0 0 1px black;
 }
 
 .wrapper.style2 .select-wrapper:before {
@@ -2501,14 +2501,15 @@ table.alt tbody tr td {
 }
 
 .wrapper.style2 input[type="checkbox"]:checked+label:before, .wrapper.style2 input[type="radio"]:checked+label:before {
-	background-color: #8a4680;
-	border-color: #8a4680;
+	background-color: black;
+	border-color: black;
 	color: #ffffff;
 }
 
 .wrapper.style2 input[type="checkbox"]:focus+label:before, .wrapper.style2 input[type="radio"]:focus+label:before {
-	border-color: #8a4680;
-	box-shadow: 0 0 0 1px #8a4680;
+	border-color: black;
+	box-shadow: 0 0 0 1px 
+	black;
 }
 
 .wrapper.style2 ::-webkit-input-placeholder {
@@ -2578,7 +2579,7 @@ table.alt tbody tr td {
 }
 
 .wrapper.style3 a {
-	color: #8a4680;
+	color: black;
 }
 
 .wrapper.style3 strong, .wrapper.style3 b {
@@ -2638,16 +2639,16 @@ table.alt tbody tr td {
 }
 
 .wrapper.style3 input[type="submit"].special, .wrapper.style3 input[type="reset"].special, .wrapper.style3 input[type="button"].special, .wrapper.style3 button.special, .wrapper.style3 .button.special {
-	background-color: #8a4680;
+	background-color: black;
 	color: #ffffff !important;
 }
 
 .wrapper.style3 input[type="submit"].special:hover, .wrapper.style3 input[type="reset"].special:hover, .wrapper.style3 input[type="button"].special:hover, .wrapper.style3 button.special:hover, .wrapper.style3 .button.special:hover {
-	background-color: #9b4f90;
+	background-color: black;
 }
 
 .wrapper.style3 input[type="submit"].special:active, .wrapper.style3 input[type="reset"].special:active, .wrapper.style3 input[type="button"].special:active, .wrapper.style3 button.special:active, .wrapper.style3 .button.special:active {
-	background-color: #793d70;
+	background-color: black;
 }
 
 .wrapper.style3 label {
@@ -2660,8 +2661,8 @@ table.alt tbody tr td {
 }
 
 .wrapper.style3 input[type="text"]:focus, .wrapper.style3 input[type="password"]:focus, .wrapper.style3 input[type="email"]:focus, .wrapper.style3 select:focus, .wrapper.style3 textarea:focus {
-	border-color: #8a4680;
-	box-shadow: 0 0 0 1px #8a4680;
+	border-color: black;
+	box-shadow: 0 0 0 1px black;
 }
 
 .wrapper.style3 .select-wrapper:before {
@@ -2678,14 +2679,14 @@ table.alt tbody tr td {
 }
 
 .wrapper.style3 input[type="checkbox"]:checked+label:before, .wrapper.style3 input[type="radio"]:checked+label:before {
-	background-color: #8a4680;
-	border-color: #8a4680;
+	background-color: black;
+	border-color: black;
 	color: #ffffff;
 }
 
 .wrapper.style3 input[type="checkbox"]:focus+label:before, .wrapper.style3 input[type="radio"]:focus+label:before {
-	border-color: #8a4680;
-	box-shadow: 0 0 0 1px #8a4680;
+	border-color: black;
+	box-shadow: 0 0 0 1px black;
 }
 
 .wrapper.style3 ::-webkit-input-placeholder {
@@ -3347,7 +3348,7 @@ body.subpage {
 /* Banner */
 
 .banner {
-	background-color: #8a4680;
+	background-color: black;
 	color: #e2d1df;
 	padding: 8em 0;
 	position: relative;
@@ -3636,6 +3637,7 @@ body.is-mobile .banner>article {
 			margin-right: 1em;
 			margin-left:1em; 
 			margin-bottom: 1em;
+		
 		 }
 		 .img-team{
 			border-radius: 50%;
@@ -3647,21 +3649,22 @@ body.is-mobile .banner>article {
 		 }
 		 .name-teamate{
 			 text-align: center;
+			 font-size: 120%;
 			
 		 }
+		 .box-team{
+			text-align: center;
 		
-		.icones-redes-sociais li,a {
-			display: inline-block;
+		 }
+	
+		 .box-team a{
+			font-size: 80%;
+		
+		 }
+		 .box-team a:hover {
+			color: rgb(146, 146, 146)
 		}
-		.img-links{
-			height: 50px;
-			width: 50px;
-			padding: 10px;
-			margin: 50%;
-		
-		}
-		
-		
+	
 	
 /* Footer */
 
@@ -3671,8 +3674,10 @@ body.is-mobile .banner>article {
 	text-align: center;
 }
 
+
 #footer a {
 	color: rgba(255, 255, 255, 0.5);
+	text-decoration: none;
 }
 
 #footer a:hover {
