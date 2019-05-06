@@ -3666,14 +3666,14 @@ body.is-mobile .banner>article {
 		
 		 .box-team{
 			text-align: center;
-		
+			
 		 }
 	
-		 .box-team a{
+		 .bx-team a{
 			font-size: 80%;
-		
+			text-decoration: none;
 		 }
-		 .box-team a:hover {
+		 .bx-team a:hover {
 			color: rgb(146, 146, 146)
 		}
 	
