@@ -3619,6 +3619,18 @@ body.is-mobile .banner>article {
 	}
 }
 
+/*solução site*/
+.img-site{
+	width:50%;
+	height:30%;
+	margin-left: 25%;
+	margin-right: 25%;
+
+}
+.normalize-box{
+	margin-top: 11.5%;
+}
+
 /*equipe*/
 .container-team {
 	        width: 100vw;
@@ -3637,21 +3649,21 @@ body.is-mobile .banner>article {
 			margin-right: 1em;
 			margin-left:1em; 
 			margin-bottom: 1em;
-		
 		 }
 		 .img-team{
 			border-radius: 50%;
 			width:50%;
 			height: 40%;
-			margin-left: 30%;
+			margin-left: 26%;
 			margin-right: 30%;
 			margin-top: 10%;
 		 }
 		 .name-teamate{
+		 	margin-top: 10px;
 			 text-align: center;
-			 font-size: 120%;
 			
 		 }
+		
 		 .box-team{
 			text-align: center;
 		

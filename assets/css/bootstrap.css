@@ -398,7 +398,7 @@ blockquote {
 }
 
 a {
-  color: #0275d8;
+
   text-decoration: none;
 }
 
@@ -9318,3 +9318,39 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+/*centralizando as imagens da equipe de acordo com a resolução*/
+@media screen and (min-width: 992px) {
+  .ml-20{
+    margin-left: 16vw;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px){
+  .bl{
+    width: 160px;
+    margin-left: 3vw;
+  }
+  .ml-20{
+    margin-left: 12.5vw;
+  }
+}
+@media screen and (min-width: 737px) and (max-width: 767px) {
+  .ml-21{
+    margin-left: 18vw;
+  }
+    .bl{
+    width: 160px;
+    margin-left: 5.5vw;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 736px){
+  .ml-21{
+    margin-left: 22vw;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 647px){
+  .bl{
+    width: 160px;
+    margin-left: 7vw;
+  }
+}
