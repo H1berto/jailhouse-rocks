@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="../assets/css/bootstrap.css">
 	<link rel="icon" href="../assets/img/icons/guitar.ico" type="image/x-icon" />
 
-</head>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9FDDA016-C9E4-004D-B3CE-160F79E16C88/main.js" charset="UTF-8"></script></head>
 
 <body>
 
@@ -365,7 +365,7 @@
 	</section>
 
 	<!-- Three -->
-	<section id="three" class="wrapper style3">
+	<section id="three-title" class="wrapper style3">
 		<div class="inner">
 			<header class="align-center">
 				<p>Time de Desenvolvedores</p>
@@ -374,13 +374,14 @@
 		</div>
 	</section>
 
-	<!-- Four -->
-	<section id="four" class="team-2 wrapper style2 text-center">
+	
+	<section id="three" class="team-2 wrapper style2 text-center">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-sm-6 col-team text-center">
 					<div class="box bx-team">
-						<img class="img-team rounded-circle" src="../assets/img/team/carol.jpeg" alt="Carol">
+							<div class="js-tilt" data-tilt>
+						<img class="img-team rounded-circle" src="../assets/img/team/carol.jpeg" alt="Carol"></div>
 						<h2 class="name-teamate bl">Carolina Prado</h2>
 						<p>Documentadora e Desenvolvedora</p>
 						<ul class="icons">
@@ -397,7 +398,9 @@
 				</div>
 				<div class="col-md-4 col-sm-6 col-team text-center">
 					<div class="box bx-team">
-						<img class="img-team rounded-circle" src="../assets/img/team/klenne.jpg" alt="Guilherme">
+							<div class="js-tilt" data-tilt>
+						<img class="img-team rounded-circle" src="../assets/img/team/klenne.jpg" alt="Guilherme"></div>
+
 						<h2 class="name-teamate bl">Guilherme Klesse</h2>
 						<p>Analista de Requisitos e Desenvolvedor</p>
 						<ul class="icons">
@@ -414,7 +417,8 @@
 				</div>
 				<div class="col-md-4 col-sm-6 col-team text-center">
 					<div class="box bx-team">
-						<img class="img-team rounded-circle" src="../assets/img/team/h1.jpg" alt="Humberto">
+							<div class="js-tilt" data-tilt>
+						<img class="img-team rounded-circle" src="../assets/img/team/h1.jpg" alt="Humberto"></div>
 						<h2 class="name-teamate bl">Humberto Barone</h2>
 						<p>Gerente de Projeto e Desenvolvedor</p>
 						<ul class="icons">
@@ -431,7 +435,8 @@
 				</div>
 				<div class="col-md-4 col-sm-6 col-team ml-20 text-center">
 					<div class="box bx-team">
-						<img class="img-team rounded-circle" src="../assets/img/team/ze.jpg" alt="jose Marcilio">
+							<div class="js-tilt" data-tilt>
+						<img class="img-team rounded-circle" src="../assets/img/team/ze.jpg" alt="jose Marcilio"></div>
 						<h2 class="name-teamate bl">José Marcilio</h2>
 						<p>Analista de Testes e Desenvolvedor</p>
 						<ul class="icons">
@@ -448,7 +453,8 @@
 				</div>
 				<div class=" col-md-4 col-sm-6 col-team ml-21 text-center">
 					<div class="box bx-team">
-						<img class="img-team rounded-circle" src="../assets/img/team/hideki.jpg" alt="Rodrigo">
+							<div class="js-tilt" data-tilt>
+						<img class="img-team rounded-circle" src="../assets/img/team/hideki.jpg" alt="Rodrigo"></div>
 						<h2 class="name-teamate bl">Rodrigo Hideki</h2>
 						<p>Analista de Testes e Desenvolvedor</p>
 						<ul class="icons">
@@ -495,6 +501,12 @@
 	<script src="../assets/js/util.js"></script>
 	<script src="../assets/js/main.js"></script>
 
+	<script src="../assets/vendor/tilt/tilt.jquery.min.js"></script>
+	<script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
 </body>
 
 </html>
