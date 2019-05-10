@@ -36,13 +36,13 @@
 /* :: 1.0 Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Allura|Raleway:200,300,400,500,600,700,800,900");
 /* :: 2.0 Import All CSS */
-@import url(css/bootstrap.min.css);
-@import url(css/classy-nav.css);
-@import url(css/owl.carousel.min.css);
-@import url(css/animate.css);
-@import url(css/magnific-popup.css);
-@import url(css/font-awesome.min.css);
-@import url(css/audioplayer.css);
+@import url(bootstrap.min.css);
+@import url(classy-nav.css);
+@import url(owl.carousel.min.css);
+@import url(animate.css);
+@import url(magnific-popup.css);
+@import url(font-awesome.min.css);
+@import url(audioplayer.css);
 /* :: 3.0 Base CSS */
 * {
   margin: 0;
@@ -413,10 +413,10 @@ img {
           color: #bd177a; }
         @media only screen and (min-width: 768px) and (max-width: 991px) {
           .header-area .musica-main-menu .classy-navbar .classynav ul li a {
-            background-color: #0c0527; } }
+            background-color:rgb(0, 0, 0); } }
         @media only screen and (max-width: 767px) {
           .header-area .musica-main-menu .classy-navbar .classynav ul li a {
-            background-color: #0c0527; } }
+            background-color:rgb(0, 0, 0); } }
       .header-area .musica-main-menu .classy-navbar .classynav ul li.megamenu-item > a::after,
       .header-area .musica-main-menu .classy-navbar .classynav ul li.has-down > a::after {
         color: #ffffff; }
@@ -459,7 +459,7 @@ img {
     top: 0;
     left: 0;
     z-index: 9999;
-    background-color: #0c0527;
+    background-color: rgb(0, 0, 0);
     box-shadow: 0 5px 50px 15px rgba(0, 0, 0, 0.2); }
     @media only screen and (max-width: 767px) {
       .header-area .is-sticky .musica-main-menu {
@@ -470,10 +470,10 @@ img {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .breakpoint-on .classy-navbar .classy-menu {
-    background-color: #0c0527; } }
+    background-color: rgb(0, 0, 0); } }
 @media only screen and (max-width: 767px) {
   .breakpoint-on .classy-navbar .classy-menu {
-    background-color: #0c0527; } }
+    background-color: rgb(0, 0, 0); } }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .classynav ul li .megamenu .single-mega.cn-col-4 {
@@ -679,7 +679,7 @@ img {
 .career-timeline-area {
   position: relative;
   z-index: 1;
-  background-color: #0c0527; }
+  background-color: rgb(0, 0, 0); }
   .career-timeline-area .first-img {
     position: absolute;
     z-index: -5;
@@ -738,13 +738,13 @@ img {
       color: rgba(255, 255, 255, 0.7); }
 
 .timeline-btn a:hover, .timeline-btn a:focus {
-  box-shadow: 0 0 60px rgba(255, 255, 255, 0.5); }
+  box-shadow: 0 0 60px rgb(255, 255, 255); }
 
 /* :: 8.0 Upcoming Shows Area CSS */
 .upcoming-shows-area {
   position: relative;
   z-index: 1;
-  background-color: #0c0527; }
+  background-color: rgb(0, 0, 0); }
 
 .single-upcoming-shows {
   position: relative;
@@ -1094,7 +1094,7 @@ img {
 .featured-album-area {
   position: relative;
   z-index: 1;
-  background-color: #0c0527; }
+  background-color:rgb(0, 0, 0); }
 
 .featured-album-content {
   position: relative;
@@ -1326,7 +1326,7 @@ img {
 .musica-music-artists-area {
   position: relative;
   z-index: 1;
-  background-color: #0c0527; }
+  background-color: rgb(0, 0, 0); }
   .musica-music-artists-area .music-search {
     position: relative;
     z-index: 1;

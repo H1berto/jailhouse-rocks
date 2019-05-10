@@ -1,6 +1,34 @@
+<?php
+
+	include_once('../includes/headerLogin.php');
+	include_once('../app/controllers/UsuarioDAO.php');
+	$logado=$_SESSION['logado'];
+		$mensagemlogin="";
+	if($logado==false){
+		if (isset($_POST['logar'])) {
+			$dao= new UsuarioDAO;
+			$email =$_POST['email'];
+			$senha =$_POST['senha'];
+			$dao->setEmail($email);
+			$dao->setSenha($senha);
+			$result=$dao->loginUsuario();
+			echo $result['login'];
+			if($result['login']==1){
+				$logado=true;
+				$_SESSION['logado']=$logado;
+				header('Location: usuario/index.php');
+				die();
+			}else{
+				$mensagemlogin="Usuario não encontrado! Tente novamente.";
+			}
+		}
+	}else{
+		header('Location: usuario/index.php');
+	}
+?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>Jailhouse Rock's - Login</title>
 	<meta charset="UTF-8">
@@ -40,11 +68,20 @@
 					<img class="img-diabinho" src="../assets/img/login/diabinho.png" alt="rock">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="login.php" method="POST">
 					<span class="login100-form-title">
 						Login
 					</span>
-
+					<?php 
+					if ($mensagemlogin!="") {
+						echo "<div style=\"width:300px;font-size:12px;height:60px;margin-top:-50px;\" class=\"msgcadastro alert alert-warning alert-dismissible fade show\" role=\"alert\">
+  								$mensagemlogin
+  								<button style=\"margin-top:-15px;\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+   									<span aria-hidden=\"true\">&times;</span>
+  								</button>
+							</div>";
+					}
+					?>
 					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
@@ -54,7 +91,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="senha" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -62,7 +99,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit" name="logar">
 							Login
 						</button>
 					</div>
@@ -75,7 +112,7 @@
 					</div>
 
 					<div class="text-center p-t-20">
-						<a class="txt3" href="cadastro.html">
+						<a class="txt3" href="cadastro.php">
 							Criar conta
 						</a>
 					</div>

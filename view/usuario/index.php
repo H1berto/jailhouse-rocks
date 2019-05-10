@@ -1,3 +1,13 @@
+<?php
+    include_once('../../includes/headerUsuario.php');
+    include_once('../../app/controllers/UsuarioDAO.php');
+ $logado = $_SESSION['logado'];
+ if (!$logado) {
+     header('Location:../login.php');
+ } 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,16 +21,16 @@
     <!-- Title -->
     <title>Musica - Music Template</title>
     <!-- Favicon -->
-    <link rel="icon" href="./assets/img/core-img/favicon.ico">
+    <link rel="icon" href="../../assets/img/core-img/favicon.ico">
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="./assets/css/usuario/style.css">
+    <link rel="stylesheet" href="../../assets/css/usuario/style.css">
 </head>
 
 <body>
     <!-- ##### Preloader ##### -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="circle-preloader">
-            <img src="./assets/img/core-img/compact-disc.png" alt="">
+            <img src="../../assets/img/core-img/compact-disc.png" alt="">
         </div>
     </div>
 
@@ -34,7 +44,7 @@
                     <nav class="classy-navbar justify-content-between" id="musicaNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="../index.html" class="nav-brand"><img src="../../assets/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -102,6 +112,7 @@
                                     </li>
                                     <li><a href="concert-tours.html">Gallery</a></li>
                                     <li><a href="contact.html">Contact</a></li>
+                                    <li><a style="cursor:pointer;" data-toggle="modal" data-target="#exampleModalCenter">Sair</a></li>
                                 </ul>
                                 <!-- Social Button -->
                                 <div class="top-social-info">
@@ -120,6 +131,32 @@
             </div>
         </div>
     </header>
+
+
+
+<!-- Modal Sair-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Sair da Sessão</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Deseja realmente sair? Continue aproveitando o melhor estilo musical, de forma nunca antes vista!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <form action="index.php" method="POST">
+            <button type="submit" class="btn btn-danger" name="sair">Sair</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### 
@@ -178,7 +215,7 @@
     <!-- ##### Hero Area End ##### -->
 
     <!-- ##### About Us Area Start ##### -->
-    <div class="about-us-area section-padding-100-0 bg-img bg-overlay" style="background-image: url(./assets/img/bg-img/rock.jpg);" id="about">
+    <div class="about-us-area section-padding-100-0 bg-img bg-overlay" style="background-image: url(../../assets/img/bg-img/rock2.jpg);" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -193,7 +230,7 @@
                 <!-- About Thumbnail -->
                 <div class="col-12 col-lg-6">
                     <div class="about-thumbnail mb-100">
-                        <img src="img/bg-img/rock.jpg" alt="">
+                        <img src="../../assets/img/bg-img/rock2.jpg" alt="">
                     </div>
                 </div>
                 <!-- About Content -->
@@ -201,7 +238,7 @@
                     <div class="about-content mb-100">
                         <h4>Olá Humberto Barone, esta preparado para o verdadeiro Rock and Roll?!</h4>
                         <p>Nulla pretium tincidunt felis, nec sollicitudin mauris lobortis in. Aliquam eu feugiat ligula, laoreet efficitur nulla. Morbi nec neque porta, elementum massa at, vehicula nunc. Nulla facilisi. Donec id purus eu lectus imperdiet varius. Curabitur consectetur nunc sem, vitae cursus enim tempor eget. Praesent pellentesque nisi urna, sit amet suscipit ligula posuere id. Aenean id tortor vel quam ornare gravida. Phasellus luctus feugiat nunc, quis vulputate ipsum convallis quis. Integer vel nulla erat. Donec erat metus, luctus quis maximus quis, volutpat eu tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                        <img src="img/core-img/signature.png" alt="">
+                        <img src="../../assets/img/core-img/signature.png" alt="">
                     </div>
                 </div>
             </div>
@@ -342,7 +379,7 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="./assets/img/bg-img/mp1.jpg" alt="">
+                            <img src="../../assets/img/bg-img/mp1.jpg" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
@@ -351,7 +388,7 @@
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="./assets/music/data/dummy-audio.mp3">
+                                    <source src="../../assets/music/data/dummy-audio.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -359,7 +396,7 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="./assets/img/bg-img/mp2.jpg" alt="">
+                            <img src="../../assets/img/bg-img/mp2.jpg" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
@@ -368,7 +405,7 @@
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="./assets/music/data/dummy-audio.mp3">
+                                    <source src="../../assets/music/data/dummy-audio.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -376,7 +413,7 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="./assets/img/bg-img/mp3.jpg" alt="">
+                            <img src="../../assets/img/bg-img/mp3.jpg" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
@@ -385,7 +422,7 @@
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="./assets/music/data/dummy-audio.mp3">
+                                    <source src="../../assets/music/data/dummy-audio.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -393,7 +430,7 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="./assets/img/bg-img/mp4.jpg" alt="">
+                            <img src="../../assets/img/bg-img/mp4.jpg" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
@@ -402,7 +439,7 @@
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="./assets/music/data/dummy-audio.mp3">
+                                    <source src="../../assets/music/data/dummy-audio.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -423,7 +460,7 @@
                     <div class="featured-album-content d-flex flex-wrap">
 
                         <!-- Album Thumbnail -->
-                        <div class="album-thumbnail h-100 bg-img" style="background-image: url(./assets/img/bg-img/bg-4.jpg);"></div>
+                        <div class="album-thumbnail h-100 bg-img" style="background-image: url(../../assets/img/bg-img/bg-4.jpg);"></div>
 
                         <!-- Album Songs -->
                         <div class="album-songs h-100">
@@ -447,7 +484,7 @@
                                     <div class="single-music active">
                                         <h6>Drop that beat</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -455,7 +492,7 @@
                                     <div class="single-music">
                                         <h6>Hey, Mister Dj</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -463,7 +500,7 @@
                                     <div class="single-music">
                                         <h6>Message to my future self</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -471,7 +508,7 @@
                                     <div class="single-music">
                                         <h6>Bring back the love</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -479,7 +516,7 @@
                                     <div class="single-music">
                                         <h6>Hey, Mister Dj - Remix</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -487,14 +524,14 @@
                                     <div class="single-music">
                                         <h6>Message to my future self</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
                                     <!-- Single Song -->
                                     <div class="single-music">
                                         <h6>Drop that beat</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -502,7 +539,7 @@
                                     <div class="single-music">
                                         <h6>Hey, Mister Dj</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -510,7 +547,7 @@
                                     <div class="single-music">
                                         <h6>Message to my future self</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -518,7 +555,7 @@
                                     <div class="single-music">
                                         <h6>Bring back the love</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -526,7 +563,7 @@
                                     <div class="single-music">
                                         <h6>Hey, Mister Dj - Remix</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
 
@@ -534,7 +571,7 @@
                                     <div class="single-music">
                                         <h6>Message to my future self</h6>
                                         <audio preload="auto" controls>
-                                            <source src="./assets/music/data/dummy-audio.mp3">
+                                            <source src="../../assets/music/data/dummy-audio.mp3">
                                         </audio>
                                     </div>
                                 </div>
@@ -547,7 +584,7 @@
                                     <h6>Drop that beat</h6>
                                 </div>
                                 <audio preload="auto" controls>
-                                    <source src="./assets/music/data/dummy-audio.mp3">
+                                    <source src="../../assets/music/data/dummy-audio.mp3">
                                 </audio>
                             </div>
 
@@ -562,7 +599,7 @@
     <!-- ##### Music Artists Area Start ##### -->
     <div class="musica-music-artists-area d-flex flex-wrap clearfix">
         <!-- Music Search -->
-        <div class="music-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="300ms" style="background-image: url(./assets/img/bg-img/bg-9.jpg);">
+        <div class="music-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="300ms" style="background-image: url(../../assets/img/bg-img/bg-9.jpg);">
             <!-- Content -->
             <div class="music-search-content">
                 <h2>Music</h2>
@@ -571,7 +608,7 @@
         </div>
 
         <!-- Artists Search -->
-        <div class="artists-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="600ms" style="background-image: url(./img/bg-img/bg-1.jpg);">
+        <div class="artists-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="600ms" style="background-image: url(../../assets/img/bg-img/bg-1.jpg);">
             <!-- Content -->
             <div class="music-search-content">
                 <h2>Artists</h2>
@@ -589,9 +626,9 @@
                 <!-- Footer Widget Area -->
                 <div class="col-12 col-md-6 col-xl-3">
                     <div class="footer-widget-area mb-100">
-                        <a href="#"><img src="./assets/img/core-img/logo2.png" alt=""></a>
+                        <a href="#"><img src="../../assets/img/core-img/logo2.png" alt=""></a>
                         <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
                     </div>
@@ -668,15 +705,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="../../assets/js/jquery/jquery.min.js"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="../../assets/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="../../assets/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="../../assets/js/active.js"></script>
 </body>
 
 </html>

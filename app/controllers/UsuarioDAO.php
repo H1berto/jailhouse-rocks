@@ -1,21 +1,20 @@
 <?php 
-require_once(realpath(dirname(__FILE__) . '/../bean/Usuario.php'));
-require_once(realpath(dirname(__FILE__) . "/../../../config/DB.php"));
-
+require(realpath(dirname(__FILE__).'/../model/Usuario.php'));
+require_once(realpath(dirname(__FILE__).'/../../config/DB.php'));
 
 Class UsuarioDAO extends Usuario{
 
-	function cadastrarUsuario($usuario){
-		$nome=$usuario->getNome();
-		$email=$usuario->getEmail();
-		$senha=$usuario->getSenha();
-		$dataNascimento=$usuario->getDataNascimento();
-		$foto=$usuario->getFoto();
+	function cadastrarUsuario(){
+		$nome = $this->getNome();
+		$email = $this->getEmail();
+		$senha = $this->getSenha();
+		$dataNascimento = $this->getDataNascimento();
+		$foto = $this->getFoto();
 		$cadastrar = 0;
 		try {
-			$preresultado = $this->usuarioCadastrado($usuario);
-			if ($preresultado==1) {
-				$cadastrar=1;
+			$preresultado = $this->usuarioCadastrado();
+			if ($preresultado == 1) {
+				$cadastrar = 1;
 			}else{
 				$resultado = DB::getConn()->prepare("CALL cadastrarUsuario(:nome,:email,:senha,:dataNascimento,:foto)");
 				$resultado->bindValue(':nome',$nome);
@@ -32,12 +31,12 @@ Class UsuarioDAO extends Usuario{
 			}
 			return $cadastrar;
 		} catch (Exception $e) {
-			
+			echo $e;
 		}
 	}
 
-	function usuarioCadastrado($usuario){
-		$email= $usuario->getEmail();
+	function usuarioCadastrado(){
+		$email= $this->getEmail();
 
 		try {
 			$resultado = DB::getConn()->prepare("CALL temCadastro(:email)");
@@ -51,17 +50,23 @@ Class UsuarioDAO extends Usuario{
 		
 	}
 
-	function loginUsuario($usuario){
-		$email= $usuario->getEmail();
-		$senha=$usuario->getSenha();
-
+	function loginUsuario(){
+		$email= $this->getEmail();
+		$senha=$this->getSenha();
+		$dados=null;
 		try {
 			$resultado = DB::getConn()->prepare("CALL login(:email,:senha)");
 			$resultado->bindValue(':email',$email);
 			$resultado->bindValue(':senha',$senha);
 			$resultado->execute();
-			$dados = $resultado->fetch(PDO::FETCH_OBJ);
-			return $dados->login;	
+			if ($resultado->rowCount()>=1) {	
+				//Usuario logado com sucesso
+				$dados = $resultado->fetch(PDO::FETCH_ASSOC);			
+			}else{
+				$dados=2;
+			}  	
+			
+			return $dados;	
 		} catch (Exception $e) {
 			
 		}

@@ -1,3 +1,35 @@
+<?php
+
+	include_once('../includes/headerLogin.php');
+	include_once('../app/controllers/UsuarioDAO.php');
+	$logado=$_SESSION['logado'];
+	$mensagemcadastro="";
+	if($logado==false){
+		if (isset($_POST['cadastrar'])) {
+			$dao= new UsuarioDAO;
+			$nome =$_POST['nome'];
+			$email =$_POST['email'];
+			$senha =$_POST['senha'];
+			$dtnascimento =$_POST['data'];
+			$dao->setNome($nome);
+			$dao->setEmail($email);
+			$dao->setSenha($senha);
+			$dao->setDataNascimento($dtnascimento);
+			$result=$dao->cadastrarUsuario();
+			if($result==1){
+				//Ja existe usuario cadastrado com este email...
+				$mensagemcadastro="Já existe um cadastro com este email!<br> Faça seu login.";
+			}else if($result==2){
+				$logado=true;
+				$_SESSION['logado']=$logado;
+				header('Location: usuario/index.php');
+				die();
+			}
+		}
+	}else{
+		header('Location: usuario/index.php');
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,13 +73,22 @@
 					<img  class="img-diabinho"src="../assets/img/login/diabinho.png" alt="rock">
 				</div>
 
-				<form class="login100-form cadastro100-form validate-form">
+				<form class="login100-form cadastro100-form validate-form" action="cadastro.php" method="POST">
 					<span class="login100-form-title">
 						Cadastro
 					</span>
-
+					<?php 
+					if ($mensagemcadastro!="") {
+						echo "<div style=\"width:300px;font-size:12px;height:60px;margin-top:-50px;\" class=\"msgcadastro alert alert-warning alert-dismissible fade show\" role=\"alert\">
+  								$mensagemcadastro
+  								<button style=\"margin-top:-15px;\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+   									<span aria-hidden=\"true\">&times;</span>
+  								</button>
+							</div>";
+					}
+				?>
 					<div class="wrap-input100 validate-input" data-validate = "Digite um nome:">
-						<input class="input100" type="text" name="name" placeholder="nome">
+						<input class="input100" type="text" name="nome" placeholder="nome">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -63,7 +104,7 @@
                         </div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Digite uma senha:">
-						<input class="input100" type="password" name="pass" placeholder="Senha:">
+						<input class="input100" type="password" name="senha" placeholder="Senha:">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -87,7 +128,7 @@
                     
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" name="cadastrar">
 							Cadastrar
 						</button>
 					</div>
