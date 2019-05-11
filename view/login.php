@@ -16,6 +16,13 @@
 			if($result['login']==1){
 				$logado=true;
 				$_SESSION['logado']=$logado;
+				$dadosUsuario=$dao->buscarDadosUsuario();
+				$_SESSION['id']=$dadosUsuario->id_usuario;
+				$_SESSION['nome']=$dadosUsuario->nome;
+				$_SESSION['email']=$dadosUsuario->email;
+				$_SESSION['senha']=$dadosUsuario->senha;
+				$_SESSION['dataNascimento'] =$dadosUsuario->data_nascimento;
+				$_SESSION['foto']=$dadosUsuario->foto;
 				header('Location: usuario/index.php');
 				die();
 			}else{

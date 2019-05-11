@@ -2,6 +2,7 @@
     include_once('../../includes/headerUsuario.php');
     include_once('../../app/controllers/UsuarioDAO.php');
  $logado = $_SESSION['logado'];
+ $nome = $_SESSION['nome'];
  if (!$logado) {
      header('Location:../login.php');
  } 
@@ -111,7 +112,7 @@
                                         </div>
                                     </li>
                                     <li><a href="concert-tours.html">Gallery</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="perfil.php">Perfil</a></li>
                                     <li><a style="cursor:pointer;" data-toggle="modal" data-target="#exampleModalCenter">Sair</a></li>
                                 </ul>
                                 <!-- Social Button -->
@@ -236,7 +237,7 @@
                 <!-- About Content -->
                 <div class="col-12 col-lg-6">
                     <div class="about-content mb-100">
-                        <h4>Olá Humberto Barone, esta preparado para o verdadeiro Rock and Roll?!</h4>
+                        <h4>Olá <?php echo $nome; ?>, esta preparado para o verdadeiro Rock and Roll?!</h4>
                         <p>Nulla pretium tincidunt felis, nec sollicitudin mauris lobortis in. Aliquam eu feugiat ligula, laoreet efficitur nulla. Morbi nec neque porta, elementum massa at, vehicula nunc. Nulla facilisi. Donec id purus eu lectus imperdiet varius. Curabitur consectetur nunc sem, vitae cursus enim tempor eget. Praesent pellentesque nisi urna, sit amet suscipit ligula posuere id. Aenean id tortor vel quam ornare gravida. Phasellus luctus feugiat nunc, quis vulputate ipsum convallis quis. Integer vel nulla erat. Donec erat metus, luctus quis maximus quis, volutpat eu tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
                         <img src="../../assets/img/core-img/signature.png" alt="">
                     </div>

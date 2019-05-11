@@ -50,6 +50,50 @@ Class UsuarioDAO extends Usuario{
 		
 	}
 
+	function alterarDados(){
+		$id = $this->getId();
+		$nome = $this->getNome();
+		$dataNascimento = $this->getDataNascimento();
+		$senha = $this->getSenha();
+		$alterar = null;
+		try {
+			$resultado = DB::getConn()->prepare("CALL alterarDados(:novoNome,:novaSenha,:novaData,:id)");
+			$resultado->bindValue(':novoNome',$nome);
+			$resultado->bindValue(':novaSenha',$senha);
+			$resultado->bindValue(':novaData',$dataNascimento);
+			$resultado->bindValue(':id',$id);
+			$resultado->execute();
+			if ($resultado->rowCount()>=1) {	
+				//Usuario alterado com sucesso	
+				$alterar=2;
+			}  	
+
+		} catch (Exception $e) {
+			
+		}
+		return $alterar;
+
+	}
+
+	function buscarDadosUsuario(){
+		$email = $this->getEmail();
+		$dados =null;
+		try {
+			$resultado = DB::getConn()->prepare("CALL buscarDadosUsuario(:email)");
+			$resultado->bindValue(':email',$email);
+			$resultado->execute();
+			if ($resultado->rowCount()>=1) {	
+				while ($data = $resultado->fetch(PDO::FETCH_OBJ)) {	
+					$dados=$data;
+				}
+			}  	
+		} catch (Exception $e) {
+
+		}
+		return $dados;
+
+	}
+
 	function loginUsuario(){
 		$email= $this->getEmail();
 		$senha=$this->getSenha();

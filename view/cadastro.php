@@ -70,10 +70,10 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img  class="img-diabinho"src="../assets/img/login/diabinho.png" alt="rock">
+					<img  class="img-diabinho" src="../assets/img/login/diabinho.png" alt="rock">
 				</div>
 
-				<form class="login100-form cadastro100-form validate-form" action="cadastro.php" method="POST"oninput='confpass.setCustomValidity(confpass.value != senha.value ? "Senhas não coencidem!" : "")'>
+				<form class="login100-form cadastro100-form validate-form" action="cadastro.php" method="POST" oninput='confpass.setCustomValidity(confpass.value != senha.value ? "As senhas não coincidem." : "")'>
 					<span class="login100-form-title">
 						Cadastro
 					</span>
