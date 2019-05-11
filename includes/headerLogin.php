@@ -9,5 +9,5 @@ if(empty($_SESSION['logado'])){
 if (isset($_POST['sair'])) {
 	//destroi a sessão e todos os seus dados
 	session_destroy();
-	header('Location:index.html');
+	header('Location:index.php');
 }

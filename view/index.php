@@ -1,3 +1,11 @@
+<?php
+	include_once('../includes/headerLogin.php');
+	 $logado = $_SESSION['logado'];
+	 if ($logado) {
+	     header('Location:usuario/index.php');
+	 } 
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -8,7 +16,7 @@
 	<link rel="stylesheet" href="../assets/css/bootstrap.css">
 	<link rel="icon" href="../assets/img/icons/guitar.ico" type="image/x-icon" />
 
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9FDDA016-C9E4-004D-B3CE-160F79E16C88/main.js" charset="UTF-8"></script></head>
+	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9FDDA016-C9E4-004D-B3CE-160F79E16C88/main.js" charset="UTF-8"></script></head>
 
 <body>
 

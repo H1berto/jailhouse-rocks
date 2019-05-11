@@ -73,7 +73,7 @@
 					<img  class="img-diabinho"src="../assets/img/login/diabinho.png" alt="rock">
 				</div>
 
-				<form class="login100-form cadastro100-form validate-form" action="cadastro.php" method="POST">
+				<form class="login100-form cadastro100-form validate-form" action="cadastro.php" method="POST"oninput='confpass.setCustomValidity(confpass.value != senha.value ? "Senhas não coencidem!" : "")'>
 					<span class="login100-form-title">
 						Cadastro
 					</span>
