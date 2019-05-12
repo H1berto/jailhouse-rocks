@@ -31,7 +31,7 @@
     <!-- ##### Preloader ##### -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="circle-preloader">
-            <img src="../../assets/img/core-img/compact-disc.png" alt="">
+            <img src="../../assets/img/core-img/compact-disc2.png" alt="">
         </div>
     </div>
 

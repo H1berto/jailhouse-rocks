@@ -6,10 +6,10 @@
 	$dataNascimento=$_SESSION['dataNascimento'];
 	$senha=$_SESSION['senha'];
 	$logado=$_SESSION['logado'];
-	$mensagemcadastro="";
-	if($logado==false){
+	$atualizado="";
+	if($logado){
 		if (isset($_POST['alterar'])) {
-			if ($_POST['nome']==$nome&&$_POST['senha']==$senha&&$_POST['data']==$dataNascimento) {
+			if ($_POST['nome']==$nome&&($_POST['senha']==$senha||$_POST['senha']=="")&&$_POST['data']==$dataNascimento) {
 				$nadaAlterado="";
 			}else{
 				$confirmarAlteracao="";
@@ -29,6 +29,10 @@
 				$result=$dao->alterarDados();
 				if ($result==2) {
 					$atualizado="Dados atualizados com sucesso!";
+					$dadosUsuario=$dao->buscarDadosUsuario();
+					$_SESSION['nome']=$dadosUsuario->nome;
+					$_SESSION['senha']=$dadosUsuario->senha;
+					$_SESSION['dataNascimento'] =$dadosUsuario->data_nascimento;
 					header('Location:perfil.php');
 				}
 
@@ -86,7 +90,8 @@
 		    </div>
 		  </div>
 		</div>
-	<?php} ?>
+<?php
+} ?>
 
 	<?php if (isset($nadaAlterado)) { ?>
 			<!-- Modal Nada Alterado-->
@@ -108,7 +113,8 @@
 	    </div>
 	  </div>
 	</div>
-	<?php} ?>
+<?php
+} ?>
 
 
 			<header class="header" class="alt">
@@ -125,7 +131,8 @@
 		<div class="limiter">
 			<div class="container-login100">
 				<div class="wrap-login100">
-					<form style="margin-left: 240px;margin-top: 5px;" class="login100-form cadastro100-form validate-form" action="cadastro.php" method="POST" >
+
+					<form style="margin-left: 240px;margin-top: 5px;" class="login100-form cadastro100-form validate-form" action="perfil.php" method="POST" >
 						<span class="login100-form-title">
 							Seus dados
 						</span>
@@ -147,22 +154,6 @@
 							</span>
 	                    </div>
 
-						<div class="wrap-input100 validate-input" data-validate = "Digite uma senha:">
-							<input class="input100" type="password" name="senha" placeholder="Nova senha:">
-							<span class="focus-input100"></span>
-							<span class="symbol-input100">
-								<i class="fa fa-lock" aria-hidden="true"></i>
-							</span>
-	                    </div>
-
-	                    <div class="wrap-input100 validate-input" data-validate = "Confirme Senha:">
-	                            <input class="input100" type="password" name="confpass" placeholder="Confirmar a senha:">
-	                            <span class="focus-input100"></span>
-	                            <span class="symbol-input100">
-	                                <i class="fa fa-lock" aria-hidden="true"></i>
-	                            </span>
-	                        </div>
-
 	                        <div class="wrap-input100 validate-input" data-validate = "Digite uma data:">
 	                                <input class="input100 dt" type="date"required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="data" placeholder="Data de Nascimento:" value="<?php echo $dataNascimento; ?>">
 	                                <span class="focus-input100"></span>
@@ -173,9 +164,12 @@
 	                    
 						
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" name="alterar">
+							<button class="login100-form-btn" type="submit" name="alterar">
 								Alterar
 							</button>
+							<form action="">
+								<button class="" type="submit" name="alterarsenha">Trocar Senha</button>
+							</form>
 						</div>
 
 		
