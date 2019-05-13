@@ -51,20 +51,18 @@ Class UsuarioDAO extends Usuario{
 	}
 
 	function alterarDados(){
-		$id = $this->getId();
+		$id = $this->getIdUsuario();
 		$nome = $this->getNome();
 		$dataNascimento = $this->getDataNascimento();
 		$senha = $this->getSenha();
 		$alterar = null;
 		try {
-			$resultado = DB::getConn()->prepare("CALL alterarDados(:novoNome,:novaSenha,:novaData,:id)");
+			$resultado = DB::getConn()->prepare("CALL alterarDados(:novoNome,:novaData,:id)");
 			$resultado->bindValue(':novoNome',$nome);
-			$resultado->bindValue(':novaSenha',$senha);
 			$resultado->bindValue(':novaData',$dataNascimento);
 			$resultado->bindValue(':id',$id);
 			$resultado->execute();
 			if ($resultado->rowCount()>=1) {	
-				//Usuario alterado com sucesso	
 				$alterar=2;
 			}  	
 

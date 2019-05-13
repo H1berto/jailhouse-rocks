@@ -63,67 +63,11 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about-us.html">About us</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Mega Menu</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a href="concert-tours.html">Gallery</a></li>
+                                    <li><a href="#">Musicas</a></li>
+                                    <li><a href="concert-tours.html">Minha Playlist</a></li>
                                     <li><a href="perfil.php">Perfil</a></li>
                                     <li><a style="cursor:pointer;" data-toggle="modal" data-target="#exampleModalCenter">Sair</a></li>
                                 </ul>
-                                <!-- Social Button -->
-                                <div class="top-social-info">
-                                    <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                </div>
                             </div>
                             <!-- Nav End -->
                         </div>
@@ -220,14 +164,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <br>
                     <div class="section-heading">
-                        <h2>Rock and Roll</h2>
+                        <h2 style="font-size: 40px;">Rock and Roll</h2>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div style="margin-top: -40px;" class="row">
                 <!-- About Thumbnail -->
                 <div class="col-12 col-lg-6">
                     <div class="about-thumbnail mb-100">
@@ -464,7 +407,7 @@
                         <div class="album-thumbnail h-100 bg-img" style="background-image: url(../../assets/img/bg-img/bg-4.jpg);"></div>
 
                         <!-- Album Songs -->
-                        <div class="album-songs h-100">
+                        <div  class="album-songs h-100">
 
                             <!-- Album Info -->
                             <div class="album-info mb-50 d-flex flex-wrap align-items-center justify-content-between">
@@ -473,7 +416,7 @@
                                     <h4>Love is all Around</h4>
                                 </div>
                                 <div class="album-buy-now">
-                                    <a href="#" class="btn musica-btn">Buy it on Itunes</a>
+                                    <a href="#" class="btn musica-btn button-gradient">Buy it on Itunes</a>
                                 </div>
                             </div>
 
@@ -579,13 +522,13 @@
                             </div>
 
                             <!-- Now Playing -->
-                            <div class="now-playing d-flex flex-wrap align-items-center justify-content-between">
+                            <div  class="now-playing d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="songs-name">
                                     <p>Playing</p>
                                     <h6>Drop that beat</h6>
                                 </div>
                                 <audio preload="auto" controls>
-                                    <source src="../../assets/music/data/dummy-audio.mp3">
+                                    <source src="..\..\assets\music\data\dummy-audio.mp3">
                                 </audio>
                             </div>
 

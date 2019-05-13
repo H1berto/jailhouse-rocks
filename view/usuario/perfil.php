@@ -6,37 +6,37 @@
 	$dataNascimento=$_SESSION['dataNascimento'];
 	$senha=$_SESSION['senha'];
 	$logado=$_SESSION['logado'];
-	$atualizado="";
+	$email=$_SESSION['email'];
+	$alterar=false;
+	$atualizado=0;
+	$tipoMensagem="";
 	if($logado){
+
 		if (isset($_POST['alterar'])) {
-			if ($_POST['nome']==$nome&&($_POST['senha']==$senha||$_POST['senha']=="")&&$_POST['data']==$dataNascimento) {
-				$nadaAlterado="";
-			}else{
-				$confirmarAlteracao="";
-			}
-		}
-
-		if (isset($_POST['finalizarAlteracao'])) {
-			$dao= new UsuarioDAO;
+			if ($_POST['nome']!=$nome||$_POST['data']!=$dataNascimento){		
+				$dao= new UsuarioDAO;
 				$nome =$_POST['nome'];
-				$email =$_POST['email'];
-				$senha =$_POST['senha'];
 				$dtnascimento =$_POST['data'];
+				$id=$_SESSION['id'];
+				$dao->setIdUsuario($id);
 				$dao->setNome($nome);
-				$dao->setEmail($email);
-				$dao->setSenha($senha);
 				$dao->setDataNascimento($dtnascimento);
+				$dao->setEmail($email);
 				$result=$dao->alterarDados();
-				if ($result==2) {
-					$atualizado="Dados atualizados com sucesso!";
-					$dadosUsuario=$dao->buscarDadosUsuario();
-					$_SESSION['nome']=$dadosUsuario->nome;
-					$_SESSION['senha']=$dadosUsuario->senha;
-					$_SESSION['dataNascimento'] =$dadosUsuario->data_nascimento;
-					header('Location:perfil.php');
-				}
+				echo $result;
+				$dadosUsuario=$dao->buscarDadosUsuario();
+				$_SESSION['nome']=$dadosUsuario->nome;
+				$_SESSION['dataNascimento'] =$dadosUsuario->data_nascimento;
+  				$atualizado=2;
+			}else if($_POST['nome']==$nome&&$_POST['data']==$dataNascimento){
+				$atualizado=1;
 
+			}
+			$_POST['alterar']="";
 		}
+
+		if (isset($_POST['alterarsenha'])) {
+		}		
 	}else{
 		header('Location: ../login.php');
 	}
@@ -63,58 +63,101 @@
 		<link rel="stylesheet" type="text/css" href="../../assets/css/util.css">
 		<link rel="stylesheet" type="text/css" href="../../assets/css/login.css">
 	<!--===============================================================================================-->
+		<script language="JavaScript">
+		
+		function verificaForm(form) {
 
+			if (form == 'formsenha') {
+
+				var controlnull = 0;
+				var controlequal = 0;
+				var senha = document.getElementById('senha').value;
+				var confsenha = document.getElementById('confsenha').value;
+				if(senha==""||senha.length<4||confsenha==""||confsenha.length<4){
+					if (senha==""||senha.length<4) {
+						addClass('senha','is-invalid');
+						controlnull++;
+					}else{
+						delClass('senha','is-invalid');
+					}
+
+					if (confsenha==""||confsenha.length<4) {
+						addClass('confsenha','is-invalid');
+						controlnull++;
+					}else{
+						delClass('confsenha','is-invalid');
+					}
+
+					if (controlnull>0) {
+						displayModal('modalnull','block');
+					}else{
+						displayModal('modalnull','none');
+					}	
+				}else{
+					if(senha!=""&&confsenha!=""&&senha.length>=4&&confsenha>=4&&senha!=confsenha) {
+						controlequal++;
+						addClass('confsenha','is-invalid');
+						addClass('senha','is-invalid');
+					}else{
+						delClass('confsenha','is-invalid');
+						delClass('senha','is-invalid');
+					}
+				}
+
+				if (controlequal>0) {
+					displayModal('modalequals','block');
+				}else{
+					displayModal('modalequals','none');
+				}
+					
+				if(controlnull>0||controlequal>0){
+					controlnull=0;
+					controlequal=0;
+					return false;
+				}
+
+				return true;	
+			}else if(form=='geral'){
+
+			}
+		}
+		function eNulo(form) {
+			// body...
+		}
+		function eIgual(form) {
+			// body...
+		}
+		function addClass(id, classe) {
+		  var elemento = document.getElementById(id);
+		  var classes = elemento.className.split(' ');
+		  var getIndex = classes.indexOf(classe);
+
+		  if (getIndex === -1) {
+		    classes.push(classe);
+		    elemento.className = classes.join(' ');
+		  }
+
+		}
+
+		function delClass(id, classe) {
+		  var elemento = document.getElementById(id);
+		  var classes = elemento.className.split(' ');
+		  var getIndex = classes.indexOf(classe);
+
+		  if (getIndex > -1) {
+		    classes.splice(getIndex, 1);
+		  }
+		  elemento.className = classes.join(' ');
+		}
+
+		function displayModal(id,value) {
+		    var display = document.getElementById(id).style.display;
+		    document.getElementById(id).style.display = value;
+
+    	}	
+		</script>
 	</head>
 	<body>
-	<?php if (isset($confirmarAlteracao)) { ?>	
-			<!-- Modal Confirmar-->
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalCenterTitle">Sair da Sessão</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        Deseja realmente alterar estes dados? 
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		        <form action="index.php" method="POST">
-		            <button type="submit" class="btn btn-success" name="finalizarAlteracao">Confirmar</button>
-		        </form>
-		        
-		      </div>
-		    </div>
-		  </div>
-		</div>
-<?php
-} ?>
-
-	<?php if (isset($nadaAlterado)) { ?>
-			<!-- Modal Nada Alterado-->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalCenterTitle">Sair da Sessão</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	       	Nenhuma informação alterada!
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>     
-	      </div>
-	    </div>
-	  </div>
-	</div>
-<?php
-} ?>
 
 
 			<header class="header" class="alt">
@@ -130,22 +173,34 @@
 		</header>
 		<div class="limiter">
 			<div class="container-login100">
-				<div class="wrap-login100">
 
-					<form style="margin-left: 240px;margin-top: 5px;" class="login100-form cadastro100-form validate-form" action="perfil.php" method="POST" >
+				<div class="wrap-login100">
+					<span style="text-align: center; margin-top: -70px;" class="login100-form-title">Seus Dados</span>
+					<form style="margin-left: 40px;" class="login100-form cadastro100-form validate-form" action="perfil.php" method="POST" >
 						<span class="login100-form-title">
-							Seus dados
+							Geral 
 						</span>
 						<?php 
-						if ($atualizado!="") {
-							echo "<div style=\"width:300px;font-size:12px;height:60px;margin-top:-50px;\" class=\"msgcadastro alert alert-success alert-dismissible fade show\" role=\"alert\">
-	  								$atualizado
+						if ($atualizado==1) {
+							echo "<div style=\"width:300px;height:50px;margin-top:-50px;\" class=\"msgcadastro alert alert-warning alert-dismissible fade show\" role=\"alert\">
+	  								Dados inalterados!
+	  								<button style=\"margin-top:1px;\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+	   									<span aria-hidden=\"true\">&times;</span>
+	  								</button>
+								</div>";
+								$atualizado=0;
+						}else if($atualizado==2){
+							echo "<div style=\"width:300px;height:70px;margin-top:-50px;\" class=\"msgcadastro alert alert-success alert-dismissible fade show\" role=\"alert\">
+	  								Dados atualizados com sucesso!
 	  								<button style=\"margin-top:-15px;\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
 	   									<span aria-hidden=\"true\">&times;</span>
 	  								</button>
 								</div>";
+								$atualizado=0;
+						}else{
+							echo "";
 						}
-					?>
+						?>
 						<div class="wrap-input100 validate-input" data-validate = "Digite um nome:">
 							<input class="input100" type="text" name="nome" placeholder="Nome" value="<?php echo $nome; ?>">
 							<span class="focus-input100"></span>
@@ -164,25 +219,73 @@
 	                    
 						
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" type="submit" name="alterar">
+							<button class="login100-form-btn" type="submit" name="alterar"  > 
 								Alterar
 							</button>
-							<form action="">
-								<button class="" type="submit" name="alterarsenha">Trocar Senha</button>
-							</form>
 						</div>
-
-		
 					</form>
+					<div class="login100-pic " >
+						<form id="formsenha" class="login100-form cadastro100-form" action="" method="POST" onSubmit="return verificaForm('formsenha');">
+							<span class="login100-form-title">Senha</span>
+							<?php 
+							if ($atualizado==3) {
+								echo "<div style=\"width:300px;font-size:12px;height:60px;margin-top:-50px;\" class=\"msgcadastro alert alert-success alert-dismissible fade show\" role=\"alert\">
+		  								Senha Alterada com sucesso
+		  								<button style=\"margin-top:-15px;\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+		   									<span aria-hidden=\"true\">&times;</span>
+		  								</button>
+									</div>";
+							}
+							?>
+							<!-- Modal - validação senhas em branco JS -->
+							<div id="modalnull" style="display:none;width:300px;height:50px;margin-top:-50px;" class="msgcadastro alert alert-danger alert-dismissible fade show" role="alert" typ>
+			  								Digite uma senha valida!
+			  								<button onclick="displayModal('modalnull','none');" style="margin-top:1px;" type="button" class="close" >
+			   									<span>&times;</span>
+			  								</button>
+							</div>
+							<!-- Modal - validação de senhas iguais JS -->
+							<div id="modalequals" style="display:none;width:300px;height:50px;margin-top:-50px;" class="msgcadastro alert alert-danger alert-dismissible fade show" role="alert" typ>
+			  								As senhas não coincidem!
+			  								<button onclick="displayModal('modalequals','none');" style="margin-top:1px;" type="button" class="close" >
+			   									<span>&times;</span>
+			  								</button>
+							</div>
+
+
+							<div  class="wrap-input100">
+								<input id="senha" class="input100 form-control " type="password" name="senha" placeholder="Senha">
+								<span class="focus-input100"></span>
+								<span class="symbol-input100">
+									<i class="fa fa-lock" aria-hidden="true"></i>
+								</span>
+		                    </div>
+
+		                    <div  class="wrap-input100" >
+		                            <input id="confsenha" class="input100 form-control " type="password" name="confpass" placeholder="Confirmar Senha">
+		                            <span class="focus-input100"></span>
+		                            <span class="symbol-input100">
+		                                <i class="fa fa-lock" aria-hidden="true"></i>
+		                            </span>
+		                    </div>
+						
+							
+							<div class="container-login100-form-btn">
+								<button class="login100-form-btn" type="submit" name="alterarsenha">
+									Trocar Senha
+								</button>
+							</div>
+
+						</form>
+					</div>
 				</div>
-			</div>
 		</div>
 		
 		
 
 		
 	<!--===============================================================================================-->	
-		<script src="../../assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="../../assets/js/jquery/jquery.min.js"></script>
 	<!--===============================================================================================-->
 		<script src="../../assets/vendor/bootstrap/js/popper.js"></script>
 		<script src="../../assets/vendor/bootstrap/js/bootstrap.min.js"></script>

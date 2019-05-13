@@ -1202,13 +1202,13 @@ img {
       .featured-album-content .album-songs .album-info .album-title h6 {
         font-size: 12px;
         font-weight: 900;
-        color: #c5afd9;
+        color: #6A6A6A;
         text-transform: uppercase; }
       .featured-album-content .album-songs .album-info .album-title h4 {
         font-size: 24px;
         margin-bottom: 0;
         font-weight: 900;
-        color: #ffffff; }
+        color: #FFFFFF; }
         @media only screen and (min-width: 768px) and (max-width: 991px) {
           .featured-album-content .album-songs .album-info .album-title h4 {
             font-size: 18px; } }
@@ -1248,7 +1248,7 @@ img {
       left: 0;
       right: 0;
       z-index: 30;
-      background-color: #1d1633;
+      background-color: #140D39;
       padding: 30px 50px; }
       @media only screen and (max-width: 767px) {
         .featured-album-content .album-songs .now-playing {
@@ -1921,4 +1921,21 @@ img {
 
 /* ====== The End ====== */
 
+.album-songs{
+  background-color: #140d4f;
+}
+
+.now-playing{
+  background-color: #140D39;
+}
+.album-title h6{
+      color: #6A6A6A;
+}
+.button-gradient{
+  background: rgb(19,19,19); / Old browsers /
+background: -webkit-linear-gradient(rgba(19,19,19,1) 0%, rgba(43,43,43,1) 5%, rgba(0,0,0,1) 48%, rgba(17,17,17,1) 76%, rgba(44,44,44,1) 100%);
+background: -o-linear-gradient(rgba(19,19,19,1) 0%, rgba(43,43,43,1) 5%, rgba(0,0,0,1) 48%, rgba(17,17,17,1) 76%, rgba(44,44,44,1) 100%);
+background: linear-gradient(rgba(19,19,19,1) 0%, rgba(43,43,43,1) 5%, rgba(0,0,0,1) 48%, rgba(17,17,17,1) 76%, rgba(44,44,44,1) 100%) ; / FF3.6-15 / / Chrome10-25,Safari5.1-6 / / W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ /
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#131313', endColorstr='#2c2c2c',GradientType=0 ); / IE6-9 */
+}
 /*# sourceMappingURL=style.css.map */
