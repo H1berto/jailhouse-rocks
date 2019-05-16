@@ -21,7 +21,13 @@
 				$mensagemcadastro="Já existe um cadastro com este email!<br> Faça seu login.";
 			}else if($result==2){
 				$logado=true;
-				$_SESSION['logado']=$logado;
+				$_SESSION['logado']=$logado;$dadosUsuario=$dao->buscarDadosUsuario();
+				$_SESSION['id']=$dadosUsuario->id_usuario;
+				$_SESSION['nome']=$dadosUsuario->nome;
+				$_SESSION['email']=$dadosUsuario->email;
+				$_SESSION['senha']=$dadosUsuario->senha;
+				$_SESSION['dataNascimento'] =$dadosUsuario->data_nascimento;
+				$_SESSION['foto']=$dadosUsuario->foto;
 				header('Location: usuario/index.php');
 				die();
 			}

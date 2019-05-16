@@ -73,6 +73,26 @@ Class UsuarioDAO extends Usuario{
 
 	}
 
+	function alterarSenha(){
+		$id = $this->getIdUsuario();
+		$senha = $this->getSenha();
+		$alterar = null;
+		try {
+			$resultado = DB::getConn()->prepare("CALL alterarSenha(:novaSenha,:id)");
+			$resultado->bindValue(':novaSenha',$senha);
+			$resultado->bindValue(':id',$id);
+			$resultado->execute();
+			if ($resultado->rowCount()>=1) {	
+				$alterar=2;
+			}  	
+
+		} catch (Exception $e) {
+			
+		}
+		return $alterar;
+
+	}
+
 	function buscarDadosUsuario(){
 		$email = $this->getEmail();
 		$dados =null;
@@ -103,7 +123,7 @@ Class UsuarioDAO extends Usuario{
 			$resultado->execute();
 			if ($resultado->rowCount()>=1) {	
 				//Usuario logado com sucesso
-				$dados = $resultado->fetch(PDO::FETCH_ASSOC);			
+				$dados = $resultado->fetch(PDO::FETCH_OBJ);			
 			}else{
 				$dados=2;
 			}  	

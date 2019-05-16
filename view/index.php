@@ -16,7 +16,8 @@
 	<link rel="stylesheet" href="../assets/css/bootstrap.css">
 	<link rel="icon" href="../assets/img/icons/guitar.ico" type="image/x-icon" />
 
-	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9FDDA016-C9E4-004D-B3CE-160F79E16C88/main.js" charset="UTF-8"></script></head>
+	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9FDDA016-C9E4-004D-B3CE-160F79E16C88/main.js" charset="UTF-8"></script>
+</head>
 
 <body>
 
@@ -33,8 +34,6 @@
 		<ul class="links">
 			<li><a href="login.php">Login</a></li>
 			<li><a href="cadastro.php">Cadastro</a></li>
-			<li><a href="#">Músicas em Destaque</a></li>
-			<li><a href="#">Playlist</a></li>
 		</ul>
 	</nav>
 
@@ -347,7 +346,7 @@
 								<strong>Rockabilly</strong>, até os sons mais sujos que surgiram dos <strong>anos
 									70</strong> a diante.</p>
 							<p>Além disso quando você realiza o cadastro no nosso site geramos uma
-								<strong>Playlist</strong>exclusiva de acordo com a sua data de nascimento, assim pode
+								<strong>Playlist</strong> exclusiva de acordo com a sua data de nascimento, assim pode
 								desfrutar das melhores músicas de sua época.</p>
 							
 							<p>E para melhorar tudo isso é de graça, isso mesmo não custa nem um centavo usar a nossa
@@ -355,7 +354,7 @@
 								and <strong>Rock'n'Roll</strong>.</p>
 								<p>Estamos trabalhando para trazer o melhor conteúdo possível, aguardem novas funcionalidades...</p>
 								<footer class="align-center normalize-box">
-									<a href="cadastro.html"
+									<a href="cadastro.php"
 										 class="button alt">Cadastre-se Agora</a>
 									</footer>
 						</div>

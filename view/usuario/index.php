@@ -1,11 +1,37 @@
 <?php
-    include_once('../../includes/headerUsuario.php');
-    include_once('../../app/controllers/UsuarioDAO.php');
- $logado = $_SESSION['logado'];
- $nome = $_SESSION['nome'];
- if (!$logado) {
-     header('Location:../login.php');
- } 
+    require_once('../../includes/headerUsuario.php');
+    require_once('../../app/controllers/UsuarioDAO.php');
+    require_once('../../app/front-controllers/PlaylistDAO.php');
+    require_once('../../app/front-controllers/MusicaDAO.php');
+    
+    $logado = $_SESSION['logado'];
+    if (!$logado) {
+        header('Location:../index.php');
+    } 
+
+    $nome = $_SESSION['nome'];
+    $id_usuario = $_SESSION['id'];
+    $data = $_SESSION['dataNascimento'];
+    $partesData= explode("-",$data);
+    $anoPlaylist=$partesData[0];
+
+    if (isset($_POST['playlist'])) {
+        $playlistDAO = new PlaylistDAO;
+        $gerarPlaylist = $playlistDAO->gerarPlaylist($anoPlaylist,$id_usuario);
+        header('Location:index.php');
+    }
+
+    if (isset($_POST['gerarNovaPlaylist'])) {
+        $playlistDAO = new PlaylistDAO;
+        $apagarPlaylist = $playlistDAO->apagarPlaylist($id_usuario);
+        $novaPlaylist =$playlistDAO->gerarPlaylist($anoPlaylist,$id_usuario);
+        header('Location:index.php');
+    }
+
+    $playlistDAO = new PlaylistDAO;
+    $temPlaylist=$playlistDAO->buscarPlaylistUsuario($id_usuario);
+    $musicaDAO = new MusicaDAO;
+    $musicasGeral = $musicaDAO->buscarMusicas();
 
 ?>
 
@@ -20,11 +46,12 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Musica - Music Template</title>
+    <title>Jailhouse Rock's</title>
     <!-- Favicon -->
     <link rel="icon" href="../../assets/img/core-img/favicon.ico">
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="../../assets/css/usuario/style.css">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 </head>
 
 <body>
@@ -45,8 +72,11 @@
                     <nav class="classy-navbar justify-content-between" id="musicaNav">
 
                         <!-- Nav brand -->
-                        <a href="index.php" class="nav-brand"><img src="../../assets/img/core-img/logo.png" alt=""></a>
-
+                        <div class="classynav">
+                        <ul>
+                            <li><a href="index.php" class="nav-brand" style="font-size: 20px;">JailhouseRock's</a><li>
+                        </ul>
+                        </div>
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -63,8 +93,9 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="#">Musicas</a></li>
-                                    <li><a href="concert-tours.html">Minha Playlist</a></li>
+                                    <li><a href="#destaques">Em destaque</a></li>
+                                    <li><a href="#musicas">Musicas</a></li>
+                                    <li><a href="#playlist">Minha Playlist</a></li>
                                     <li><a href="perfil.php">Perfil</a></li>
                                     <li><a style="cursor:pointer;" data-toggle="modal" data-target="#exampleModalCenter">Sair</a></li>
                                 </ul>
@@ -313,9 +344,18 @@
         </div>
     </div>-->
     <!-- ##### Upcoming Shows Area End ##### -->
+<!--         <section id="two-title" class="wrapper style3">
+        <div class="inner">
+            <header class="align-center">
+                <p>Musicas
 
+                </p>
+                <h2>O verdadeiro Rock And Roll</h2>
+            </header>
+        </div>
+    </section> -->
     <!-- ##### Music Player Area Start ##### -->
-    <div class="music-player-area section-padding-100">
+        <div id="destaques" class="music-player-area section-padding-100">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -323,16 +363,16 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="../../assets/img/bg-img/mp1.jpg" alt="">
+                            <img src="..\..\assets\music\img\Be Bop a Lula.jpg" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
-                                    <h5>Artist’s/Band Name</h5>
-                                    <p>Love is all Around</p>
+                                    <h5>Gene Vincente</h5>
+                                    <p>Be Bop A Lula</p>
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="../../assets/music/data/dummy-audio.mp3">
+                                    <source src="..\..\assets\music\data\Be Bop A Lula.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -340,16 +380,16 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="../../assets/img/bg-img/mp2.jpg" alt="">
+                            <img src="..\..\assets\music\img\Californication.jpg" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
-                                    <h5>Artist’s/Band Name</h5>
-                                    <p>Love is all Around</p>
+                                    <h5>Red Hot Chili Peppers</h5>
+                                    <p>Californication</p>
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="../../assets/music/data/dummy-audio.mp3">
+                                    <source src="..\..\assets\music\data\Californication.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -357,16 +397,16 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="../../assets/img/bg-img/mp3.jpg" alt="">
+                            <img src="..\..\assets\music\img\Imagine.jpg" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
-                                    <h5>Artist’s/Band Name</h5>
-                                    <p>Love is all Around</p>
+                                    <h5>John Lennon</h5>
+                                    <p>Imagine</p>
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="../../assets/music/data/dummy-audio.mp3">
+                                    <source src="..\..\assets\music\data\Imagine.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -374,16 +414,120 @@
 
                         <!-- Single Music Player -->
                         <div class="single-music-player">
-                            <img src="../../assets/img/bg-img/mp4.jpg" alt="">
+                            <img src="..\..\assets\music\img\Eye of the Tiger.png" alt="">
 
                             <div class="music-info d-flex justify-content-between">
                                 <div class="music-text">
-                                    <h5>Artist’s/Band Name</h5>
-                                    <p>Love is all Around</p>
+                                    <h5>Survivor</h5>
+                                    <p>Eye of the Tiger</p>
                                 </div>
                                 <div class="music-play-icon">
                                     <audio preload="auto" controls>
-                                    <source src="../../assets/music/data/dummy-audio.mp3">
+                                    <source src="..\..\assets\music\data\Eye of the Tiger.mp3">
+                                </audio>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Music Player -->
+                        <div class="single-music-player">
+                            <img src="..\..\assets\music\img\Don't Stop Believin'.jfif" alt="">
+
+                            <div class="music-info d-flex justify-content-between">
+                                <div class="music-text">
+                                    <h5>Journey</h5>
+                                    <p>Don't Stop Believin'</p>
+                                </div>
+                                <div class="music-play-icon">
+                                    <audio preload="auto" controls>
+                                    <source src="..\..\assets\music\data\Don't Stop Believin'.mp3">
+                                </audio>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Music Player -->
+                        <div class="single-music-player">
+                            <img src="..\..\assets\music\img\Another Brick In The Wall.png" alt="">
+
+                            <div class="music-info d-flex justify-content-between">
+                                <div class="music-text">
+                                    <h5>    
+                                    Pink Floyd
+                                    </h5>
+                                    <p>Another Brick In The Wall, Pt.2</p>
+                                </div>
+                                <div class="music-play-icon">
+                                    <audio preload="auto" controls>
+                                    <source src="..\..\assets\music\data\Another Brick In The Wall.mp3">
+                                </audio>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Music Player -->
+                        <div class="single-music-player">
+                            <img src="..\..\assets\music\img\Riders On The Storm.jpg" alt="">
+
+                            <div class="music-info d-flex justify-content-between">
+                                <div class="music-text">
+                                    <h5>The Doors</h5>
+                                    <p>Riders On The Storm</p>
+                                </div>
+                                <div class="music-play-icon">
+                                    <audio preload="auto" controls>
+                                    <source src="..\..\assets\music\data\Riders On The Storm.mp3">
+                                </audio>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Music Player -->
+                        <div class="single-music-player">
+                            <img src="..\..\assets\music\img\Bohemian Rhapsody.jpg" alt="">
+
+                            <div class="music-info d-flex justify-content-between">
+                                <div class="music-text">
+                                    <h5>Queen</h5>
+                                    <p>Bohemian Rhapsody</p>
+                                </div>
+                                <div class="music-play-icon">
+                                    <audio preload="auto" controls>
+                                    <source src="..\..\assets\music\data\Bohemian Rhapsody.mp3">
+                                </audio>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Music Player -->
+                        <div class="single-music-player">
+                            <img src="..\..\assets\music\img\Do I Wanna Know.jpg" alt="">
+
+                            <div class="music-info d-flex justify-content-between">
+                                <div class="music-text">
+                                    <h5>Arctic Monkeys</h5>
+                                    <p>Do I Wanna Know</p>
+                                </div>
+                                <div class="music-play-icon">
+                                    <audio preload="auto" controls>
+                                    <source src="..\..\assets\music\data\Do I Wanna Know.mp3">
+                                </audio>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Music Player -->
+                        <div class="single-music-player">
+                            <img src="..\..\assets\music\img\So Far Away.png" alt="">
+
+                            <div class="music-info d-flex justify-content-between">
+                                <div class="music-text">
+                                    <h5>So Far Away</h5>
+                                    <p>Avenged Sevenfold</p>
+                                </div>
+                                <div class="music-play-icon">
+                                    <audio preload="auto" controls>
+                                    <source src="..\..\assets\music\data\So Far Away.mp3">
                                 </audio>
                                 </div>
                             </div>
@@ -394,17 +538,15 @@
             </div>
         </div>
     </div>
-    <!-- ##### Music Player Area End ##### -->
-
     <!-- ##### Featured Album Area Start ##### -->
-    <div class="featured-album-area section-padding-100 clearfix">
+    <div id="musicas" class="featured-album-area section-padding-100 clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="featured-album-content d-flex flex-wrap">
 
                         <!-- Album Thumbnail -->
-                        <div class="album-thumbnail h-100 bg-img" style="background-image: url(../../assets/img/bg-img/bg-4.jpg);"></div>
+                        <div class="album-thumbnail h-100 bg-img" style="background-image: url(../../assets/img/bg-img/musicaslogo1.jpg);"></div>
 
                         <!-- Album Songs -->
                         <div  class="album-songs h-100">
@@ -412,11 +554,9 @@
                             <!-- Album Info -->
                             <div class="album-info mb-50 d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="album-title">
-                                    <h6>Featured album</h6>
-                                    <h4>Love is all Around</h4>
-                                </div>
-                                <div class="album-buy-now">
-                                    <a href="#" class="btn musica-btn button-gradient">Buy it on Itunes</a>
+                                    <h4>Todas as Musicas</h4>
+                                    <h6>The Rock never ends</h6>
+
                                 </div>
                             </div>
 
@@ -424,100 +564,16 @@
 
                                 <!-- Music Playlist -->
                                 <div class="music-playlist">
-                                    <!-- Single Song -->
-                                    <div class="single-music active">
-                                        <h6>Drop that beat</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
+                                <?php foreach ($musicasGeral as $key) { ?>
                                     <!-- Single Song -->
                                     <div class="single-music">
-                                        <h6>Hey, Mister Dj</h6>
+                                        <h6><?php echo "{$key->nome} - {$key->artista}"; ?></h6>
                                         <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
+                                            <source src="<?php echo "$key->musica_path";?>">
                                         </audio>
                                     </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Message to my future self</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Bring back the love</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Hey, Mister Dj - Remix</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Message to my future self</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Drop that beat</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Hey, Mister Dj</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Message to my future self</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Bring back the love</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Hey, Mister Dj - Remix</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
-
-                                    <!-- Single Song -->
-                                    <div class="single-music">
-                                        <h6>Message to my future self</h6>
-                                        <audio preload="auto" controls>
-                                            <source src="../../assets/music/data/dummy-audio.mp3">
-                                        </audio>
-                                    </div>
+                                <?php 
+                                } ?> 
                                 </div>
                             </div>
 
@@ -525,10 +581,10 @@
                             <div  class="now-playing d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="songs-name">
                                     <p>Playing</p>
-                                    <h6>Drop that beat</h6>
+                                    <h6>-- '' --</h6>
                                 </div>
                                 <audio preload="auto" controls>
-                                    <source src="..\..\assets\music\data\dummy-audio.mp3">
+                                    <source src="">
                                 </audio>
                             </div>
 
@@ -538,25 +594,132 @@
             </div>
         </div>
     </div>
+    <!-- ##### Music Player Area End ##### -->
+<!--         <section id="two-title" class="wrapper style3">
+        <div class="inner">
+            <header class="align-center">
+                <p>Sua Playlist
+
+                </p>
+                <h2>É aqui onde sua incursão começa!</h2>
+            </header>
+        </div>
+    </section> -->
     <!-- ##### Featured Album Area End ##### -->
+    <?php if ($temPlaylist==0) { ?>
+    <div  class="featured-album-area section-padding-100 ">
+        <div class="container">
+ 
+                <div class="col-12">
+
+                        <div class="card center-block text-center">
+                              <div class="card-body">
+                                <h1 class="card-title">Ainda não possui playlist?<i style="margin-left:  10px;" class="em em-disappointed_relieved"></i></h1>
+                                <br>
+                                <p style="font-size: 18px;" class="card-text">Não perca tempo e aproveite agora para ouvir as melhores musicas do mais verdadeiro Rock and Roll da sua época!!</p>
+                                <br>
+                                <form action="index.php" method="POST">
+                                    <button name="playlist" class="btn btn-primary" type="submit" style="font-size: 20px;">Gerar minha playlist<i style="margin-left: 10px;" class="em em-guitar"></i></button>
+                                </form>
+                              </div>
+
+                        </div>
+
+                </div>
+         
+        </div>
+    </div>
+    <?php 
+    }else{ 
+    ?>
+    
+    <!-- ##### Featured Album Area Start ##### -->
+    <div id="playlist" class="featured-album-area section-padding-100 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="featured-album-content d-flex flex-wrap">
+                        <!-- Album Songs -->
+                        <div  class="album-songs h-100">
+
+                            <!-- Album Info -->
+                            <div class="album-info mb-50 d-flex flex-wrap align-items-center justify-content-between">
+                                <div class="album-title">
+                                    <h4>Playlist de <?php echo $nome; ?></h4>
+                                    <h6>Feita a partir do ano de <?php echo $anoPlaylist; ?></h6>
+                                </div>
+                                <div style="margin-left: 10px;margin-bottom: 20px;" class="album-buy-now">
+                                    <form action="index.php" method="POST">
+                                        <button name="gerarNovaPlaylist" class="btn musica-btn button-gradient" type="submit">Gerar Novamente</button>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="album-all-songs">
+                                <!-- Music Playlist -->
+                                <div class="music-playlist">
+                                <?php foreach ($temPlaylist as $key) { ?>
+
+
+                                        <!-- Single Song -->
+                                        <div class="single-music">
+                                            <h6><?php echo "{$key->nome} - {$key->artista}"; ?></h6>
+                                            <audio preload="auto" controls>
+                                                <source src="<?php echo "$key->musica_path";?>">
+                                            </audio>
+                                        </div>
+                                
+
+                                <?php 
+                                } ?> 
+                                </div>   
+                            </div>
+
+                            <!-- Now Playing -->
+                            <div  class="now-playing d-flex flex-wrap align-items-center justify-content-between">
+                                <div class="songs-name">
+                                    <p>Playing</p>
+                                    <h6>-- '' --</h6>
+                                </div>
+                                <audio preload="auto" controls>
+                                    <source src="">
+                                </audio>
+                            </div>
+
+                        </div>
+                         <!-- Album Thumbnail -->
+                        <div class="album-thumbnail h-100 bg-img" style="background-image: url(../../assets/img/bg-img/musicaslogo2.jpg);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Featured Album Area End ##### -->
+    <?php 
+    } ?>
+
+
+
+
+
+
 
     <!-- ##### Music Artists Area Start ##### -->
     <div class="musica-music-artists-area d-flex flex-wrap clearfix">
         <!-- Music Search -->
-        <div class="music-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="300ms" style="background-image: url(../../assets/img/bg-img/bg-9.jpg);">
+        <div class="music-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="300ms" style="background-image: url(../../assets/img/bg-img/showmusicas.jpg);">
             <!-- Content -->
             <div class="music-search-content">
-                <h2>Music</h2>
-                <h4>Search for the best music</h4>
+                <h2>Musicas</h2>
             </div>
         </div>
 
         <!-- Artists Search -->
-        <div class="artists-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="600ms" style="background-image: url(../../assets/img/bg-img/bg-1.jpg);">
+        <div class="artists-search bg-img bg-overlay2 wow fadeInUp" data-wow-delay="600ms" style="background-image: url(../../assets/img/bg-img/artistashow.jpg);">
             <!-- Content -->
             <div class="music-search-content">
-                <h2>Artists</h2>
-                <h4>Search for the best artists</h4>
+                <h2>Artistas</h2>
             </div>
         </div>
     </div>
@@ -570,47 +733,27 @@
                 <!-- Footer Widget Area -->
                 <div class="col-12 col-md-6 col-xl-3">
                     <div class="footer-widget-area mb-100">
-                        <a href="#"><img src="../../assets/img/core-img/logo2.png" alt=""></a>
-                        <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
+                        <h1>Jailhouse Rock's</h1>
                     </div>
                 </div>
 
                 <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-4 col-xl-2">
+                <div style="margin-left: 450px;" class="col-12 col-sm-4 col-xl-2">
                     <div class="footer-widget-area mb-100">
                         <div class="widget-title">
-                            <h4>About</h4>
+                            <h4>Sobre</h4>
                         </div>
                         <nav>
                             <ul class="footer-nav">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">The team</a></li>
-                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Empresa</a></li>
+                                <li><a href="#">Projeto</a></li>
+                                <li><a href="#">Time</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
 
-                <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-4 col-xl-2">
-                    <div class="footer-widget-area mb-100">
-                        <div class="widget-title">
-                            <h4>Links</h4>
-                        </div>
-                        <nav>
-                            <ul class="footer-nav">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">The team</a></li>
-                                <li><a href="#">Careers</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+
 
                 <!-- Footer Widget Area -->
                 <div class="col-12 col-sm-4 col-xl-2">
@@ -622,25 +765,14 @@ Copyright &copy;
                             <ul class="footer-nav">
                                 <li><a href="#">Facebook</a></li>
                                 <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Snapchat</a></li>
+                                <li><a href="#">Linkedin</a></li>
                                 <li><a href="#">Instagram</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
 
-                <!-- Footer Widget Area -->
-                <div class="col-12 col-md-6 col-xl-3">
-                    <div class="footer-widget-area mb-100">
-                        <div class="widget-title">
-                            <h4>Subscribe</h4>
-                        </div>
-                        <form action="#" method="post" class="subscribe-form">
-                            <input type="email" name="subscribe-email" id="subscribeemail">
-                            <button type="submit">subscribe</button>
-                        </form>
-                    </div>
-                </div>
+
 
             </div>
         </div>

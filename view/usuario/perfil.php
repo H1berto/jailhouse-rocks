@@ -23,7 +23,6 @@
 				$dao->setDataNascimento($dtnascimento);
 				$dao->setEmail($email);
 				$result=$dao->alterarDados();
-				echo $result;
 				$dadosUsuario=$dao->buscarDadosUsuario();
 				$_SESSION['nome']=$dadosUsuario->nome;
 				$_SESSION['dataNascimento'] =$dadosUsuario->data_nascimento;
@@ -32,10 +31,19 @@
 				$atualizado=1;
 
 			}
-			$_POST['alterar']="";
 		}
 
 		if (isset($_POST['alterarsenha'])) {
+			$dao= new UsuarioDAO;
+			$senha =$_POST['senha'];
+			$id=$_SESSION['id'];
+			$dao->setIdUsuario($id);
+			$dao->setSenha($senha);
+			$dao->setEmail($email);
+			$result=$dao->alterarSenha();
+			$dadosUsuario=$dao->buscarDadosUsuario();
+			$_SESSION['senha']=$dadosUsuario->senha;
+			$atualizado=3;
 		}		
 	}else{
 		header('Location: ../login.php');
@@ -44,7 +52,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Jailhouse Rock's - Cadastro</title>
+		<title>Jailhouse Rock's - Meu Perfil</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->	
@@ -62,9 +70,19 @@
 	<!--===============================================================================================-->
 		<link rel="stylesheet" type="text/css" href="../../assets/css/util.css">
 		<link rel="stylesheet" type="text/css" href="../../assets/css/login.css">
+
 	<!--===============================================================================================-->
 		<script language="JavaScript">
-		
+
+		function typeSenha(id){
+			var type = document.getElementById(id).type;
+			if(type == 'text'){
+				document.getElementById(id).type = 'password';
+			}else{
+				document.getElementById(id).type = 'text';
+			}
+		}	
+
 		function verificaForm(form) {
 
 			if (form == 'formsenha') {
@@ -90,6 +108,7 @@
 
 					if (controlnull>0) {
 						displayModal('modalnull','block');
+						displayModal('modalequals','none');
 					}else{
 						displayModal('modalnull','none');
 					}	
@@ -106,10 +125,12 @@
 
 				if (controlequal>0) {
 					displayModal('modalequals','block');
+					displayModal('modalnull','none');
 				}else{
 					displayModal('modalequals','none');
 				}
 					
+
 				if(controlnull>0||controlequal>0){
 					controlnull=0;
 					controlequal=0;
@@ -121,12 +142,7 @@
 
 			}
 		}
-		function eNulo(form) {
-			// body...
-		}
-		function eIgual(form) {
-			// body...
-		}
+		
 		function addClass(id, classe) {
 		  var elemento = document.getElementById(id);
 		  var classes = elemento.className.split(' ');
@@ -160,14 +176,14 @@
 	<body>
 
 
-			<header class="header" class="alt">
+		<header class="header" class="alt">
 					<div class="voltar">
 				
 							<a href="index.php"><i class="fa fa-arrow-left icon"></i></a>
 			
 					</div>
 					<h1 class="titulo-login">Jailhouse Rock's</h1>
-				</header>
+		</header>
 		<header id="header" class="alt">
 			<a  href="#menu"></a></div>
 		</header>
@@ -229,9 +245,9 @@
 							<span class="login100-form-title">Senha</span>
 							<?php 
 							if ($atualizado==3) {
-								echo "<div style=\"width:300px;font-size:12px;height:60px;margin-top:-50px;\" class=\"msgcadastro alert alert-success alert-dismissible fade show\" role=\"alert\">
+								echo "<div style=\"width:300px;height:50px;margin-top:-50px;\" class=\"msgcadastro alert alert-success alert-dismissible fade show\" role=\"alert\">
 		  								Senha Alterada com sucesso
-		  								<button style=\"margin-top:-15px;\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+		  								<button style=\"margin-top:-23px;\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
 		   									<span aria-hidden=\"true\">&times;</span>
 		  								</button>
 									</div>";
@@ -247,7 +263,7 @@
 							<!-- Modal - validação de senhas iguais JS -->
 							<div id="modalequals" style="display:none;width:300px;height:50px;margin-top:-50px;" class="msgcadastro alert alert-danger alert-dismissible fade show" role="alert" typ>
 			  								As senhas não coincidem!
-			  								<button onclick="displayModal('modalequals','none');" style="margin-top:1px;" type="button" class="close" >
+			  								<button onclick="displayModal('modalequals','none');" style="margin-top:-25px;" type="button" class="close" >
 			   									<span>&times;</span>
 			  								</button>
 							</div>
@@ -259,16 +275,27 @@
 								<span class="symbol-input100">
 									<i class="fa fa-lock" aria-hidden="true"></i>
 								</span>
+
 		                    </div>
 
+								<span onclick="typeSenha('senha')" style=" margin-bottom:-8px;  margin-left:760px;cursor: pointer;" class="symbol-input100">
+			                         <i id="olho"  style="margin-left: 220px;" class="fa fa-eye" aria-hidden="true"></i>
+			                    </span>
+
 		                    <div  class="wrap-input100" >
-		                            <input id="confsenha" class="input100 form-control " type="password" name="confpass" placeholder="Confirmar Senha">
+		                            <input id="confsenha" class="input100 form-control " type="password" name="confsenha" placeholder="Confirmar Senha">
+		                            
 		                            <span class="focus-input100"></span>
 		                            <span class="symbol-input100">
 		                                <i class="fa fa-lock" aria-hidden="true"></i>
 		                            </span>
+
 		                    </div>
-						
+							
+								<span  style=" margin-left:760px;margin-bottom:-66px; cursor: pointer;" class="symbol-input100">
+			                         <i id="olho2" onclick="typeSenha('confsenha')" style="margin-left: 220px; " class="fa fa-eye" aria-hidden="true"></i>
+			                    </span>
+							
 							
 							<div class="container-login100-form-btn">
 								<button class="login100-form-btn" type="submit" name="alterarsenha">

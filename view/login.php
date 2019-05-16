@@ -12,8 +12,7 @@
 			$dao->setEmail($email);
 			$dao->setSenha($senha);
 			$result=$dao->loginUsuario();
-			echo $result['login'];
-			if($result['login']==1){
+			if($result->login==1){
 				$logado=true;
 				$_SESSION['logado']=$logado;
 				$dadosUsuario=$dao->buscarDadosUsuario();
@@ -106,7 +105,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="submit" name="logar">
+						<button  class="login100-form-btn" type="submit" name="logar">
 							Login
 						</button>
 					</div>
